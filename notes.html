@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Все заметки</title>
+</head>
+<body>
+    <h1>Все заметки</h1>
+    <a href="/">← Назад к добавлению</a>
+    
+    {% if notes %}
+        {% for note in notes %}
+            <div style="border: 1px solid #ccc; padding: 15px; margin: 10px 0;">
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.text }}</p>
+                <small>ID: {{ note.id }}</small>
+                <br>
+                <a href="/delete/{{ note.id }}">Удалить</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Нет заметок</p>
+    {% endif %}
+</body>
+</html>
