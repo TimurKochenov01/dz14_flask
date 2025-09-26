@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Дневник программиста</title>
+</head>
+<body>
+    <h1>Добавить новую заметку</h1>
+    
+    <form method="POST" action="/add">
+        <input type="text" name="title" placeholder="Заголовок" required><br><br>
+        <textarea name="text" placeholder="Текст заметки" rows="4" required></textarea><br><br>
+        <button type="submit">Добавить заметку</button>
+    </form>
+    
+    <hr>
+    
+    <h2>Последние заметки</h2>
+    {% if notes %}
+        {% for note in notes[-3:]|reverse %}
+            <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+                <h3>{{ note.title }}</h3>
+                <p>{{ note.text }}</p>
+                <small>ID: {{ note.id }}</small>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Пока нет заметок</p>
+    {% endif %}
+    
+    <a href="/notes">Посмотреть все заметки</a>
+</body>
+</html>
